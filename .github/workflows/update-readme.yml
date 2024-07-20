@@ -1,0 +1,24 @@
+name: Update README with a new cat image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Update README with new cat image
+      run: |
+        echo "![Random Cat](https://cataas.com/cat)" > README.md
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+        git add README.md
+        git commit -m "Update README with a new cat image"
+        git push origin main
+
